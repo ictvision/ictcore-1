@@ -435,7 +435,8 @@ class Document extends Message
         $target_dir = pathinfo($sourceFile, PATHINFO_DIRNAME); // use source directory as target directory
         $include_path = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'; // required to include all required jvm
         $office_binary = \ICT\Core\sys_which('libreoffice', '/usr/bin');
-        $result = exec("export HOME=$home_dir && export PATH=$include_path && $office_binary --headless --convert-to pdf $sourceFile  --outdir $target_dir");
+        $result = "export home=$home_dir && export path=$include_path && $office_binary --headless --convert-to pdf $sourceFile  --outdir $target_dir";
+        exec($result);
         $pdfFile = str_replace(pathinfo($sourceFile, PATHINFO_EXTENSION), 'pdf', $sourceFile);
         break;
       default:
